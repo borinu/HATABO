@@ -1,0 +1,71 @@
+body {
+	margin: 0;
+	font-size: 10px;
+	line-height: 1.5;
+}
+p {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+dl {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+dd {
+	margin-left: 0;
+}
+img {
+	vertical-align: middle;
+}
+
+.wrapper {
+	width: 950px;
+	margin: 0 auto;
+}
+.mainContent {
+	float: left;
+	width: 760px;
+	height: 1500px;
+	background: #CCC;
+}
+.sideContent {
+	float: right;
+	width: 170px;
+}
+.selectedCoupon {
+	width: 240px;
+	background: #F6C550;
+	padding: 12px 3px 3px;
+	border-radius: 3px;
+	box-shadow: 0 0 10px rgba(0,0,0,.3);
+	opacity: 0;
+	transition: .3s cubic-bezier(.25,.46,.45,.94);
+}
+.selectedCoupon .head {
+	text-align: center;
+}
+.selectedCoupon .contents {
+	background: #FFF;
+	margin-top: 12px;
+	padding: 12px;
+}
+.selectedCoupon .contents .detail > dt {
+	font-size: 12px;
+	font-weight: bold;
+}
+.selectedCoupon .contents .detail > dd {
+	margin-top: 7px;
+	font-size: 13px;
+}
+.selectedCoupon .contents .clear {
+	margin-top: 12px;
+	text-align: center;
+}
+.selectedCoupon.fixed {
+	position: fixed;
+	margin-top: 10px;
+}
+.selectedCoupon.append {
+	opacity: 1;
+}
