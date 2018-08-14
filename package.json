@@ -1,0 +1,27 @@
+{
+  "name": "hatabo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/borinu/HATABO.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/borinu/HATABO/issues"
+  },
+  "homepage": "https://github.com/borinu/HATABO#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3"
+  }
+}
