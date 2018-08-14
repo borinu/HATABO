@@ -1,33 +1,36 @@
+'use strict';
+
 var HPG = HPG || {};
 HPG.STICKY_SIDE = HPG.STICKY_SIDE || {};
 
 HPG.STICKY_SIDE = {
-	init: function() {
+	init: function init() {
 		this.$serectCoupon = $('.jscSelectedCoupon');
-		if(this.$serectCoupon.length <= 0) return false;
+		if (this.$serectCoupon.length <= 0) return false;
 		this.offSetTop = this.$serectCoupon.offset().top;
 		this.$clearBtn = $('.clear').find('a');
 		this.$window = $(window);
 		this.append();
 		this.bindEvent();
 	},
-	bindEvent: function() {
-		var _self = this;
+	bindEvent: function bindEvent() {
+		const _self = this;
 
-		this.$clearBtn.on('click', function() {
+		this.$clearBtn.on('click', function () {
 			_self.release();
 		});
-		this.$window.on('scroll', function() {
+		this.$window.on('scroll', function () {
 			_self.stickyFix();
 		});
 	},
-	release: function() {
+	release: function release() {
 		this.$serectCoupon.removeClass('append');
 	},
-	append: function(){
+	append: function append() {
 		this.$serectCoupon.addClass('append');
 	},
-	stickyFix: function(){
+	stickyFix: function stickyFix() {
+		var winFlag = this.$window.scrollTop();
 		var winFlag = this.$window.scrollTop();
 		if (winFlag >= this.offSetTop) {
 			this.$serectCoupon.addClass('fixed');
@@ -37,6 +40,6 @@ HPG.STICKY_SIDE = {
 	}
 };
 
-$(window).on('load',function(){
+$(window).on('load', function () {
 	HPG.STICKY_SIDE.init();
 });

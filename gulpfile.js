@@ -1,6 +1,6 @@
 var gulp = require('gulp');
 var babel = require('gulp-babel');
-var src_dir = 'WORKS/src/*.js'
+var src_dir = 'WORKS/src/**/js/*.js'
 
 gulp.task('default', function () {
     return gulp.src(src_dir)
