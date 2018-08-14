@@ -1,3 +1,5 @@
+'use strict';
+
 //'use strict';
 //
 //var HPG = HPG || {};
@@ -44,21 +46,19 @@
 //	HPG.STICKY_SIDE.init();
 //});
 
-const $SelectedCoupon = $('.jscSelectedCoupon');
-const offset = $SelectedCoupon.offset().top;
-const $window = $(window);
-const $clearBtn = $('.clear');
+var $SelectedCoupon = $('.jscSelectedCoupon');
+var offset = $SelectedCoupon.offset().top;
+var $window = $(window);
+var $clearBtn = $('.clear');
 
-$(function(){
-	let winFlag = $window.scrollTop();
-	$window.on('scroll',function(){
-		if(winFlag >= offset){
+$(function () {
+	var winFlag = $window.scrollTop();
+	$window.on('scroll', function () {
+		if (winFlag >= offset) {
 			$SelectedCoupon.addClass('fixed');
 		}
 	});
-	$clearBtn.on('click',function(){
+	$clearBtn.on('click', function () {
 		$SelectedCoupon.removeClass('append');
 	});
 });
-
-
