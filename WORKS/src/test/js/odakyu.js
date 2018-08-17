@@ -1,29 +1,166 @@
 'use strict';
 
-const $carouseImglList = $(".jscCarouseImglList");
-const $carouselWindow = $(".jscCarouselWindow");
-const $carouselimg = $carouseImglList.find('img');
-const carouselimgWidth = $carouselimg.width();
-const changePoint = carouselimgWidth * ($carouselimg.length-1) * -1;
-const imgWidth = $carouselimg.width();
-const $rightBtn = $(".jscRightBtn");
-const $leftBtn = $(".jscLeftBtn");
+
+var HATABO = HATABO || {};
+HATABO.CAROUSEL = HATABO.CAROUSEL || {};
+
+HATABO.CAROUSEL = {
+	init: function init() {
+		this.$carouseImglList = $(".jscCarouseImglList");
+		this.$carouseImgItem = $(".jscCarouseImglList").find('li');
+		this.carouseImgLength = this.$carouseImglList.find('li').length-1;
+		this.$carouselWindow = $(".jscCarouselWindow");
+		this.$carouselimg = this.$carouseImglList.find('img');
+		this.carouselimgWidth = this.$carouselimg.width();
+		this.changePoint = this.carouselimgWidth * (this.$carouselimg.length-1) * -1;
+		this.imgWidth = this.$carouselimg.width();
+		this.$rightBtn = $(".jscRightBtn");
+		this.$leftBtn = $(".jscLeftBtn");
+		this.$indicatorBtn = $(".indicatorBtnList").find('li');
+		this.autoLoop();
+		this.bindEvent();
+	},
+	bindEvent: function() {
+		let _self = this;
+
+		this.$rightBtn.on('click', function () {
+			_self.rightSlide();
+		});
+
+		this.$leftBtn.on('click',function(){
+			_self.leftSlide();
+		});
 
 
-$(function () {
-	$rightBtn.on('click', function () {
-		let carouselOffsetLeft = $carouseImglList.offset().left;
-
-		if(carouselOffsetLeft === changePoint){
+	},
+	rightSlide: function() {
+		let carouselOffsetLeft = this.$carouseImglList.offset().left;
+		if(carouselOffsetLeft === this.changePoint){
 			//最終画像に到達した段階で、元の状態に戻す。
 			//そしてそのままifを抜けて、2枚目画像へ移動する。
-			$carouseImglList.css('left', '0');
+			this.$carouseImglList.css('left', '0');
 			carouselOffsetLeft = 0;
 		}
-		$carouseImglList.animate({ 'left': carouselOffsetLeft - imgWidth }, 500);
+		this.$carouseImglList.animate({ 'left': carouselOffsetLeft - this.imgWidth }, 500);
+	},
+	leftSlide: function() {
+		let carouselOffsetLeft = this.$carouseImglList.offset().left;
+		if(carouselOffsetLeft === 0){
+			this.$carouseImglList.css('left', this.changePoint);
+			carouselOffsetLeft = this.changePoint;
+		}
+		this.$carouseImglList.animate({'left': carouselOffsetLeft + this.imgWidth}, 500);
+	},
+	autoLoop: function autoLoop() {
+		let _self = this;
+		setInterval(function () {
 
-	});
+			var carouselOffsetLeft = _self.$carouseImglList.offset().left;
+			if (carouselOffsetLeft === _self.changePoint) {
+				_self.$carouseImglList.css('left', '0');
+				carouselOffsetLeft = 0;
+			}
+			_self.$carouseImglList.animate({ 'left': carouselOffsetLeft - _self.imgWidth }, 500);
+
+			//let imgIndex = getImgIndex();
+			//let btnIndex = getBtnIndex();
+
+			//for(let i=0; i <= carouseImgLength; i++){
+			//	if(imgIndex[i] === btnIndex[i]){
+			//		let currenrBtn = btnIndex[i];
+			//		currenrBtn.css('color', 'blue');
+			//	}
+			//}
+		}, 2000);
+	}
+};
+
+$(window).on('load', function () {
+	HATABO.CAROUSEL.init();
+
 });
+
+//
+//const $carouseImglList = $(".jscCarouseImglList");
+//const $carouseImgItem = $(".jscCarouseImglList").find('li');
+//const carouseImgLength = $carouseImglList.find('li').length-1;
+//const $carouselWindow = $(".jscCarouselWindow");
+//const $carouselimg = $carouseImglList.find('img');
+//const carouselimgWidth = $carouselimg.width();
+//const changePoint = carouselimgWidth * ($carouselimg.length-1) * -1;
+//const imgWidth = $carouselimg.width();
+//const $rightBtn = $(".jscRightBtn");
+//const $leftBtn = $(".jscLeftBtn");
+//const $indicatorBtn = $(".indicatorBtnList").find('li');
+//
+//
+//
+//$(function () {
+//	$rightBtn.on('click', function () {
+//		let carouselOffsetLeft = $carouseImglList.offset().left;
+//
+//		if(carouselOffsetLeft === changePoint){
+//			//最終画像に到達した段階で、元の状態に戻す。
+//			//そしてそのままifを抜けて、2枚目画像へ移動する。
+//			$carouseImglList.css('left', '0');
+//			carouselOffsetLeft = 0;
+//		}
+//		$carouseImglList.animate({ 'left': carouselOffsetLeft - imgWidth }, 500);
+//
+//	});
+//	$leftBtn.on('click',function(){
+//		let carouselOffsetLeft = $carouseImglList.offset().left;
+//		if(carouselOffsetLeft === 0){
+//			$carouseImglList.css('left', changePoint);
+//			carouselOffsetLeft = changePoint;
+//		}
+//		$carouseImglList.animate({'left': carouselOffsetLeft + imgWidth}, 500);
+//	});
+//
+//
+//
+//	$(function(){
+//		setInterval(function(){
+//			let carouselOffsetLeft = $carouseImglList.offset().left;
+//			if(carouselOffsetLeft === changePoint){
+//				$carouseImglList.css('left', '0');
+//				carouselOffsetLeft = 0;
+//			}
+//			$carouseImglList.animate({'left': carouselOffsetLeft - imgWidth}, 500);
+//
+//			let imgIndex = getImgIndex();
+//			let btnIndex = getBtnIndex();
+//
+//			for(let i=0; i <= carouseImgLength; i++){
+//				if(imgIndex[i] === btnIndex[i]){
+//					let currenrBtn = btnIndex[i];
+//					currenrBtn.css('color', 'blue');
+//				}
+//			}
+//
+//		},2000);
+//	});
+//
+//	let getImgIndex = function(){
+//
+//		$carouseImgItem.each(function(i, elm){
+//			let imgIndex = i;
+//			return imgIndex;
+//		});
+//	};
+//	let getBtnIndex = function(){
+//
+//		$indicatorBtn.each(function(i, elm){
+//			let btnIndex = i;
+//			return btnIndex;
+//		});
+//	};
+//
+//});
+
+
+
+
 
 
 
