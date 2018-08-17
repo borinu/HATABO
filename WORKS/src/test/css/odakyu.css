@@ -30,28 +30,22 @@ li {
 	display: block;
 	clear: both;
 }
-.carouselWrap {
-	margin: 30px;
+.carouselWrapper {
+	/*margin: 30px;*/
 }
 .carousel {
-	position: relative;
 	width: 813px;
 }
-.carousel:before {
-	content: "";
-	display: block;
-	padding-top: 34.7%;
-}
 .carouselWindow {
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: relative;
 	width: 813px;
 	height: 282px;
 	overflow: hidden;
 }
 .carouseImglList {
-	width: 2439px;
+	position: absolute;
+	left: 0;
+	width: 3252px;
 	height: 282px;
 }
 .carouseImglList > li {
@@ -97,9 +91,9 @@ li {
 	position: absolute;
 	cursor: pointer;
 	/*top: 50%;*/
-	left: 15px;
+	/*left: 15px;*/
 }
-.leftBtn:after {
+.leftBtn:before {
 	content: "";
 	border-top: solid 0.1875rem #004ba5;
 	border-right: solid 0.1875rem #004ba5;
@@ -111,7 +105,7 @@ li {
 	position: absolute;
 	cursor: pointer;
 	/*top: 50%;*/
-	right: 9px;
+	/*right: 9px;*/
 }
 button.rightBtn,
 button.leftBtn {
@@ -121,6 +115,8 @@ button.leftBtn {
 .indicatorBtnList {
 	display: table-cell;
 	height: 18px;
+	padding-right: 15px;
+	padding-left: 15px;
 }
 .indicatorBtnList > li {
 	float: left;
