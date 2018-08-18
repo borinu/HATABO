@@ -51,7 +51,7 @@ HATABO.CAROUSEL = {
 		}
 		this.$carouseImglList.animate({'left': carouselOffsetLeft + this.imgWidth}, 500);
 	},
-	autoLoop: function autoLoop() {
+	autoLoop: function() {
 		let _self = this;
 		setInterval(function () {
 
@@ -62,8 +62,11 @@ HATABO.CAROUSEL = {
 			}
 			_self.$carouseImglList.animate({ 'left': carouselOffsetLeft - _self.imgWidth }, 500);
 
-			//let imgIndex = getImgIndex();
-			//let btnIndex = getBtnIndex();
+			let imgIndex = _self.getImgIndex();
+			let btnIndex = _self.getBtnIndex();
+
+			console.log(imgIndex);
+			console.log(btnIndex);
 
 			//for(let i=0; i <= carouseImgLength; i++){
 			//	if(imgIndex[i] === btnIndex[i]){
@@ -71,7 +74,22 @@ HATABO.CAROUSEL = {
 			//		currenrBtn.css('color', 'blue');
 			//	}
 			//}
+
 		}, 2000);
+	},
+	getImgIndex: function(){
+		let _self = this;
+		_self.$carouseImgItem.each(function(i, elm){
+			let imgIndex = i;
+			return imgIndex;
+		});
+	},
+	getBtnIndex: function(){
+		let _self = this;
+		_self.$indicatorBtn.each(function(i, elm){
+			let btnIndex = i;
+			return btnIndex;
+		});
 	}
 };
 
